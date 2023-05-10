@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Array Operations</title>
+  </head>
+  <body>
+    <h1>Array Operations</h1>
+    <div>
+      <label for="addData">Add Data:</label>
+      <input type="text" id="addData" />
+      <button onclick="addData()">Add</button>
+    </div>
+   <br />
+    <div>
+
+        <div>
+      <button onclick="sortAscending()">Sort Ascending</button>
+      <button onclick="sortDescending()">Sort Descending</button>
+      <button onclick="toUpperCase()">To Upper Case</button>
+      <button onclick="toLowerCase()">To Lower Case</button>
+      <button onclick="filterItems()">Filter by 'B'</button>
+      <button onclick="getIndex()">Get Index</button>
+      <button onclick="mergeArrays()">Merge Arrays</button>
+    </div>
+        <br />
+       <label for="output">Output:</label>
+        <br />
+      <textarea id="output" cols="50" rows="10" readonly></textarea>
+    </div>
+    <br />
+
+    <script>
+      const givenarray = ['zorasic', 'table', 'bang', 'beautiful', 'rajat', 'dom'];
+      let dataArray = [...givenarray];
+      const outputTextarea = document.getElementById('output');
+      const addDataInput = document.getElementById('addData');
+
+      const addData = () => {
+        const newData = addDataInput.value.trim();
+        if (newData) {
+          dataArray.push(newData);
+          addDataInput.value = '';
+          displayOutput();
+        }
+      };
+
+      const displayOutput = () => {
+        outputTextarea.value = dataArray.join('\n');
+      };
+
+      const sortAscending = () => {
+        dataArray.sort();
+        displayOutput();
+      };
+
+      const sortDescending = () => {
+        dataArray.sort((a, b) => b.localeCompare(a));
+        displayOutput();
+      };
+
+      const toUpperCase = () => {
+        dataArray = dataArray.map((item) => item.toUpperCase());
+        displayOutput();
+      };
+
+      const toLowerCase = () => {
+        dataArray = dataArray.map((item) => item.toLowerCase());
+        displayOutput();
+      };
+
+      const filterItems = () => {
+        dataArray = dataArray.filter((item) => item[0].toUpperCase() === 'B');
+        displayOutput();
+      };
+
+      const getIndex = () => {
+        const searchValue = prompt('Enter the value to search');
+        const index = dataArray.findIndex((item) => item === searchValue);
+        alert(`Index of ${searchValue} is ${index}`);
+      };
+
+      const mergeArrays = () => {
+        const dummyArray = ['africa', 'arab', 'india', 'bangladesh'];
+        dataArray = [...dataArray, ...dummyArray];
+        displayOutput();
+      };
+
+      displayOutput();
+    </script>
+  </body>
+</html>
